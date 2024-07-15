@@ -1,0 +1,12 @@
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+.inputBox > input {
+
+    padding: 1rem;
+    
+}
