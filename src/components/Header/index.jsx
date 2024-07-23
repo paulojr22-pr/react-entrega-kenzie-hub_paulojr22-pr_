@@ -1,19 +1,11 @@
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
-
-/**
- *
- * SPA -> Single Page Aplication
- */
-
-// tag <a> -> vamos utilizar para redirecionamentos EXTERNOS
-// componente <Link>  -> vamos utilizar para redirecionamenos INTERNOS
 
 export const Header = () => {
   return (
     <header className={styles.header}>
       <Link to="/">
-        <h1>Kenzie Commerce</h1>
+        <h1>KenziePosts</h1>
       </Link>
 
       <nav>

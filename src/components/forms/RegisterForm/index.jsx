@@ -1,126 +1,84 @@
-import styles from './styles.module.css'
+// import styles from "./styles.module.scss";
 import { Input } from "../Input";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerFormSchema } from "./registerForm.schema";
+import { Link } from "react-router-dom";
+import { api } from "../../../services/api";
+import { InputPassword } from "../InputPassword";
+import { useState } from "react";
 
 export const RegisterForm = () => {
+  const [loading, setLoading] = useState(false);
 
-    const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(registerFormSchema),
+  });
 
-    const onSubmit = (event) => {
+  const onSubmit = (formData) => {
+    console.log(formData);
+    userRegister(formData);
+  };
 
-        // event.preventDefault();
+  const userRegister = async ({ email, name, password }) => {
+    // https://scrap-fake-api.onrender.com/users
+    // { email: email, name: name, password: password }
 
-        console.log(event);
-    };
+    try {
+      setLoading(true);
+      const response = await api.post("/users", { email, name, password });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    console.log(handleSubmit);
+  console.log(errors);
 
-    return (
+  return (
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        label="Nome"
+        type="text"
+        placeholder="Digite seu nome"
+        error={errors.name}
+        {...register("name")}
+      />
 
-        <form className={styles.registerForm} onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        label="Email"
+        type="email"
+        placeholder="Digite seu email"
+        error={errors.email}
+        {...register("email")}
+      />
 
-            <Input 
-                label="Usuário" 
-                type="text" 
-                placeholder='Digite seu nome de usuário' 
-                required
-                {...register("username")}
-            />
+      <InputPassword
+        label="Senha"
+        placeholder="Digite sua senha"
+        error={errors.password}
+        {...register("password")}
+      />
 
-            <Input 
-                label="Número favorito" 
-                type="number" 
-                placeholder="Digite seu número favorito entre 1 e 100:" 
-                min="1"
-                max="100" 
-                required
-                {...register("favNumber")}
-            />
+      <InputPassword
+        label="Confirmar Senha"
+        placeholder="Confirme sua senha"
+        error={errors.confirmPassword}
+        {...register("confirmPassword")}
+      />
 
-            <Input 
-                label="E-mail" 
-                type="email" 
-                placeholder="Digite seu E-mail:"
-                required
-                {...register("email")} 
-
-            />
-
-            
-            <Input 
-                label="Password" 
-                type="password" 
-                placeholder="Digite seu password:" 
-                required
-                {...register("password")}
-
-            />
-
-            <Input 
-                label="Confirmar Password" 
-                type="password" 
-                placeholder="Confirme seu password:" 
-                required
-                {...register("confirmPassword")}
-
-            />
-
-            <button>Criar conta</button>
-        
-        </form>
-    )
-
-}
-
-/*
-Versão 1 (chumbada)
-export const RegisterForm = () => {
-
-    return (
-
-        <form className={styles.registerForm}>
-
-            <div className={styles.inputBox}>   
-                <label htmlFor="username">Usuario</label>
-                <input 
-                name="username"
-                type="text" 
-                placeholder="Digite seu nome de Usuário:"
-            />
-            </div>
-         
-            <div className={styles.inputBox}>   
-                <label htmlFor="favNumber">Usuario</label>
-                <input 
-                name="favNumber"
-                type="number" 
-                placeholder="Digite seu número favorito entre 1 e 100:" 
-                min="1"
-                max="100"      
-            />        
-            </div>
-
-            <div className={styles.inputBox}>   
-                <label htmlFor="email">E-Mail</label>
-                <input 
-                name="email"
-                type="email" 
-                placeholder="Digite seu E-Mail:"   
-            />        
-            </div>
-
-            <div className={styles.inputBox}>   
-                <label htmlFor="password">Password</label>
-                <input 
-                name="password"
-                type="password" 
-                placeholder="Digite seu password:"   
-            />        
-            </div>
-
-            <button>Criar conta</button>
-        
-        </form>
-    )
-
-}*/
+      <button type="submit" className="btn outline" disabled={loading}>
+        {loading ? "Cadastrando" : "Cadastrar"}
+      </button>
+      <Link className="link" to="/">
+        Voltar
+      </Link>
+    </form>
+  );
+};

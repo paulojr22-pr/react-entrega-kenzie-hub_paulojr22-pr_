@@ -1,16 +1,11 @@
-import { DefaultTemplate } from "./components/DefaultTemplate";
-import { HomePage } from "./pages/HomePage";
 import { RoutesMain } from "./routes";
 
-import "./styles/reset.css";
-import "./styles/globals.css";
+import "./styles/index.scss";
 
 function App() {
   return (
     <>
-      <DefaultTemplate>
-        <RoutesMain />
-      </DefaultTemplate>
+      <RoutesMain />
     </>
   );
 }

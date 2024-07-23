@@ -1,9 +1,14 @@
-import styles from "./styles.module.css";
+import { LoginForm } from "../../components/forms/LoginForm";
 
 export const HomePage = () => {
   return (
-    <main>
-      <h2>Página PRINCIPAL</h2>
+    <main className="mainContainer">
+      <div className="container sm">
+        <div className="flexBox">
+          <h2 className="title2">kenziePOSTS</h2>
+          <LoginForm />
+        </div>
+      </div>
     </main>
   );
 };

@@ -1,11 +1,15 @@
-import styles from "./styles.module.css";
+// import styles from "./styles.module.scss";
 import { RegisterForm } from "../../components/forms/RegisterForm";
 
 export const RegisterPage = () => {
   return (
-    <main className={styles.registerPage}>
-      <h2>Olá eu sou uma Página de REGISTRO</h2>
-      <RegisterForm />
+    <main className="mainContainer">
+      <div className="container sm">
+        <div className="flexBox">
+          <h2 className="title2">Cadastre-se</h2>
+          <RegisterForm />
+        </div>
+      </div>
     </main>
   );
 };

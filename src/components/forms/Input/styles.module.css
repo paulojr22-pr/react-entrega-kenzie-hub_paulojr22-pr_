@@ -10,3 +10,10 @@
     padding: 1rem;
     
 }
+
+.inputBox > p {
+
+    font-size: 0.75rem;
+    color: red;
+
+}
