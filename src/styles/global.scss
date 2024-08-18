@@ -1,0 +1,21 @@
+$violet-color-1: #ff577f;
+$violet-color-1-focus: #ff427f;
+$color-primary-negative: #59323f;
+$gray-0: #F8F9FA;
+$gray-1: #868E96;
+$gray-2: #343B41;
+$gray-3: #212529;
+$gray-4: #121214;
+$sucess: #3FE864;
+$negative: #E83F5B;
+$font-stack:  "Inter", sans-serif;
+
+* {
+    box-sizing: border-box;
+    color: $gray-0;
+}
+
+body {
+    font-family: $font-stack;
+    background-color: $gray-4;
+}

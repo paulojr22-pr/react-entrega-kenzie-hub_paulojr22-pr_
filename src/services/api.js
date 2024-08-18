@@ -1,5 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://scrap-fake-api.onrender.com",
-});
+    baseURL: "https://kenziehub.herokuapp.com",
+    timeout: 8 * 1000
+})

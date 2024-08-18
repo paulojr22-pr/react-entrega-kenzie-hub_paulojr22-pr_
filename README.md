@@ -1,8 +1,23 @@
-# React + Vite
+# Pacotes utilizados:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Router DOM
 
-Currently, two official plugins are available:
+```
+npm install react-router-dom
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React Hook Form
+
+```
+npm install react-hook-form
+```
+
+Zod e Hookform resolvers
+
+```
+npm install zod @hookform/resolvers
+```
+
+API Utilizada
+
+[API para Cadastro de Usuários](https://github.com/josedasilva123/scrap-fake-api)
